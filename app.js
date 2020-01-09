@@ -8,6 +8,18 @@ var mongoose = require('mongoose')
 
 mongoose.connect('mongodb+srv://aj:ajmani@cluster0-c60su.mongodb.net/test?retryWrites=true&w=majority', {useUnifiedTopology: true , useNewUrlParser: true});
 
+//Checking if mongoDB is connected
+let db = mongoose.connection;
+db.once('open', function() {
+  console.log('Connected to MongoDB')
+});
+
+db.on('error', function(err){
+  console.log(err)
+})
+
+
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
